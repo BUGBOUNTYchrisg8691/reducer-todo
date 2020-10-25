@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
+import { initialState, todoReducer } from "../reducers";
 
-function Todo({ todo, toggleCompleted }) {
+function Todo({ toggleCompleted }) {
   const handleToggle = () => {
     toggleCompleted(todo.id);
   };
+
   return (
     <div className="todo">
       <h3>{todo.todo}</h3>

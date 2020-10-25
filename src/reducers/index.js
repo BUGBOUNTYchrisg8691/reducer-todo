@@ -7,9 +7,9 @@ export const initialState = {
 export const todoReducer = (state, action) => {
   switch (action.type) {
     case "ADD":
-      return state.concat(action.payoad);
+      return state.concat(action.payload);
     case "TOGGLE":
-      return state.map((todo) => {
+      return state.find((todo) => {
         if (todo.id === action.payload) {
           return { ...todo, completed: !todo.completed };
         } else {
@@ -18,7 +18,11 @@ export const todoReducer = (state, action) => {
       });
     case "CLEAR":
       return state.filter((todo) => {
-        !todo.completed;
+        if (todo.completed) {
+          return !todo.completed;
+        } else {
+          return todo.completed;
+        }
       });
     default:
       return state;
