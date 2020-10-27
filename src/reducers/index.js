@@ -1,15 +1,17 @@
-export const initialState = {
-  item: "Learn about reducers",
-  completed: false,
-  id: 3892987589,
-};
+export const initialState = [
+  {
+    todo: "Learn about reducers",
+    completed: false,
+    id: 3892987589,
+  },
+];
 
 export const todoReducer = (state, action) => {
   switch (action.type) {
     case "ADD":
       return state.concat(action.payload);
     case "TOGGLE":
-      return state.find((todo) => {
+      return state.map((todo) => {
         if (todo.id === action.payload) {
           return { ...todo, completed: !todo.completed };
         } else {
@@ -17,13 +19,7 @@ export const todoReducer = (state, action) => {
         }
       });
     case "CLEAR":
-      return state.filter((todo) => {
-        if (todo.completed) {
-          return !todo.completed;
-        } else {
-          return todo.completed;
-        }
-      });
+      return state.filter((todo) => !todo.completed);
     default:
       return state;
   }

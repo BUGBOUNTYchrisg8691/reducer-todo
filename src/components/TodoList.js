@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 
 import Todo from "./Todo";
 
-function TodoList({ toggleCompleted }) {
+function TodoList({ todos, toggleCompleted }) {
   return todos.map((todo) => (
     <Todo todo={todo} toggleCompleted={toggleCompleted} />
   ));

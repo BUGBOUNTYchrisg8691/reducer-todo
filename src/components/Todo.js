@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from "react";
 import { initialState, todoReducer } from "../reducers";
 
-function Todo({ toggleCompleted }) {
+function Todo({ todo, toggleCompleted }) {
   const handleToggle = () => {
     toggleCompleted(todo.id);
   };
