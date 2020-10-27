@@ -1,21 +1,22 @@
 import React, { useState, useReducer } from "react";
 import ReactDOM from "react-dom";
+import Moment from "moment";
 
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { initialState, todoReducer } from "./reducers";
 
-const moment = require("moment");
-
 function App() {
   const [state, dispatch] = useReducer(todoReducer, initialState);
+
   const onSubmit = (newTodo) => {
     const todo = {
       id: new Date().getTime(),
       todo: newTodo.todo,
       completed: false,
       timeOfCompletion: null,
-      completedBy: moment(newTodo.completedBy).format("LLL"),
+      completedBy: Moment(newTodo.completedBy).format("LLL"),
+      tags: newTodo.tags,
     };
     dispatch({ type: "ADD", payload: todo });
   };

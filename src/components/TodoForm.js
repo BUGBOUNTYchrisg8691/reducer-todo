@@ -3,22 +3,34 @@ import React, { useState } from "react";
 const initialFormValues = {
   todo: "",
   completedBy: "",
+  housework: false,
+  coding: false,
+  goals: false,
+  shopping: false,
 };
+
+const tags = ["housework", "coding", "goals", "shopping"];
 
 function TodoForm({ onSubmit }) {
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const onChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+    const newValue = type === "checkbox" ? checked : value;
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: newValue,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formValues);
+    const newTodo = {
+      todo: formValues.todo,
+      completedBy: formValues.completedBy,
+      tags: tags.filter((item) => formValues[item]),
+    };
+    onSubmit(newTodo);
     setFormValues(initialFormValues);
   };
 
@@ -30,6 +42,34 @@ function TodoForm({ onSubmit }) {
       <input
         name="completedBy"
         value={formValues.completedBy}
+        onChange={onChange}
+      />
+      Housework
+      <input
+        type="checkbox"
+        name="housework"
+        checked={formValues.housework}
+        onChange={onChange}
+      />
+      Coding
+      <input
+        type="checkbox"
+        name="coding"
+        checked={formValues.coding}
+        onChange={onChange}
+      />
+      Goals
+      <input
+        type="checkbox"
+        name="goals"
+        value={formValues.goals}
+        onChange={onChange}
+      />
+      Shopping
+      <input
+        type="checkbox"
+        name="shopping"
+        value={formValues.shopping}
         onChange={onChange}
       />
       <button>Add Todo</button>
