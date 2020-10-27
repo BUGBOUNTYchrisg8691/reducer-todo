@@ -1,6 +1,8 @@
 import React, { useReducer, useState } from "react";
 import { initialState, todoReducer } from "../reducers";
 
+const moment = require("moment");
+
 function Todo({ todo, toggleCompleted }) {
   const handleToggle = () => {
     toggleCompleted(todo.id);
@@ -18,6 +20,10 @@ function Todo({ todo, toggleCompleted }) {
         checked={todo.completed}
         onChange={handleToggle}
       />
+      {/*{todo.completedBy < moment(new Date()).format("LLL") &&
+      !todo.completed ? (
+        <div style="{color: red}">Overdue</div>
+      ) : null}*/}
     </div>
   );
 }
