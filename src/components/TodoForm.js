@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const initialFormValues = {
   todo: "",
+  completedBy: "",
 };
 
 function TodoForm({ onSubmit }) {
@@ -23,7 +24,14 @@ function TodoForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      Todo
       <input name="todo" value={formValues.todo} onChange={onChange} />
+      Completed By
+      <input
+        name="completedBy"
+        value={formValues.completedBy}
+        onChange={onChange}
+      />
       <button>Add Todo</button>
     </form>
   );

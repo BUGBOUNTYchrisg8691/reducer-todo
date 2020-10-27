@@ -9,6 +9,9 @@ function Todo({ todo, toggleCompleted }) {
   return (
     <div className="todo">
       <h3>{todo.todo}</h3>
+      {todo.timeOfCompletion && todo.completed && (
+        <div>Completed: {todo.timeOfCompletion}</div>
+      )}
       <input
         type="checkbox"
         name="completed"

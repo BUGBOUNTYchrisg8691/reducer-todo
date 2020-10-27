@@ -1,8 +1,12 @@
+const moment = require("moment");
+
 export const initialState = [
   {
     todo: "Learn about reducers",
     completed: false,
     id: 3892987589,
+    timeOfCompletion: null,
+    completedBy: moment("2020-12-12 12:00:00").format("LLL"),
   },
 ];
 
@@ -13,7 +17,11 @@ export const todoReducer = (state, action) => {
     case "TOGGLE":
       return state.map((todo) => {
         if (todo.id === action.payload) {
-          return { ...todo, completed: !todo.completed };
+          return {
+            ...todo,
+            completed: !todo.completed,
+            timeOfCompletion: !todo.completed ? moment().format("LLL") : null,
+          };
         } else {
           return todo;
         }
