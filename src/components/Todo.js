@@ -1,5 +1,4 @@
-import React, { useReducer, useState } from "react";
-import { initialState, todoReducer } from "../reducers";
+import React from "react";
 
 const moment = require("moment");
 
