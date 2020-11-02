@@ -7,6 +7,7 @@ export const initialState = [
     id: 3892987589,
     timeOfCompletion: null,
     completedBy: Moment("2020-12-12 12:00:00").format("LLL"),
+    tags: ["coding"],
   },
 ];
 
@@ -28,6 +29,8 @@ export const todoReducer = (state, action) => {
       });
     case "CLEAR":
       return state.filter((todo) => !todo.completed);
+    case "SEARCH":
+      return state.filter((todo) => todo.tags.includes(action.payload));
     default:
       return state;
   }
