@@ -1,5 +1,12 @@
 import Moment from "moment";
 
+import {
+  ADD,
+  TOGGLE,
+  CLEAR,
+  SEARCH
+} from "./../actions"
+
 export const initialState = [
   {
     todo: "Learn about reducers",
@@ -13,9 +20,9 @@ export const initialState = [
 
 export const todoReducer = (state, action) => {
   switch (action.type) {
-    case "ADD":
+    case ADD:
       return state.concat(action.payload);
-    case "TOGGLE":
+    case TOGGLE:
       return state.map((todo) => {
         if (todo.id === action.payload) {
           return {
@@ -27,9 +34,9 @@ export const todoReducer = (state, action) => {
           return todo;
         }
       });
-    case "CLEAR":
+    case CLEAR:
       return state.filter((todo) => !todo.completed);
-    case "SEARCH":
+    case SEARCH:
       return state.filter((todo) => todo.tags.includes(action.payload));
     default:
       return state;
